@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Aof Project"
+  config.site_title = "Architects Of Fate"
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -54,7 +54,7 @@ ActiveAdmin.setup do |config|
   #
   # This setting changes the method which Active Admin calls
   # within the application controller.
-  config.authentication_method = :authenticate_user!
+  config.authentication_method = :authenticate_active_admin_user!
 
   # == User Authorization
   #
@@ -99,7 +99,7 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   config.logout_link_path = :destroy_user_session_path
-
+  config.logout_link_method    = :delete
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
   #
@@ -224,11 +224,11 @@ ActiveAdmin.setup do |config|
   #
   # If you wanted to add a static menu item to the default menu provided:
   #
-  #   config.namespace :admin do |admin|
-  #     admin.build_menu :default do |menu|
-  #       menu.add label: "My Great Website", url: "http://www.mygreatwebsite.com", html_options: { target: :blank }
-  #     end
-  #   end
+    config.namespace :admin do |admin|
+      admin.build_menu :default do |menu|
+        menu.add label: "Website", url: "/"
+      end
+    end
 
   # == Download Links
   #
