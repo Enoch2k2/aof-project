@@ -1,4 +1,4 @@
-<nav>
+<nav class="indigo darken-4">
   <div class="nav-wrapper container">
     <%= link_to "Architects Of Fate", root_path, class: "brand-logo" %>
     <ul class="right">
@@ -6,7 +6,9 @@
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <li><%= link_to "Log In", new_user_session_path %></li>
       <% else %>
+        <% if current_user.superadmin %>
         <li><%= link_to "Admin", admin_dashboard_path %></li>
+        <% end %>
         <li><%= link_to "Logout", destroy_user_session_path, method: "delete" %></li>
       <% end %>
     </ul>
