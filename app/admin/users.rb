@@ -1,14 +1,15 @@
 ActiveAdmin.register User do
   controller do
     def permitted_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :member, :superadmin)
+      params.require(:user).permit(:email, :password, :password_confirmation, :member, :superadmin, :username)
     end
   end
   
   index do
     selectable_column
     id_column
-    column :email
+    column :username
+    column :member
     column :superadmin
     column :current_sign_in_at
     column :sign_in_count
@@ -17,6 +18,7 @@ ActiveAdmin.register User do
   end
   
   filter :email
+  filter :username
   filter :superadmin
   filter :current_sign_in_at
   filter :sign_in_count
@@ -25,6 +27,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
+      f.input :username
       f.input :member, :label => "Member"
       f.input :superadmin, :label => "Super Administrator"
     end
