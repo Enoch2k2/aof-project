@@ -1,6 +1,10 @@
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :superadmin
-
+  controller do
+    def permitted_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :superadmin)
+    end
+  end
+  
   index do
     selectable_column
     id_column
@@ -11,27 +15,26 @@ ActiveAdmin.register User do
     column :created_at
     actions
   end
-
+  
   filter :email
   filter :superadmin
   filter :current_sign_in_at
   filter :sign_in_count
   filter :created_at
-
+  
   form do |f|
     f.inputs do
       f.input :email
-      f.input :password
-      f.input :password_confirmation
       f.input :superadmin, :label => "Super Administrator"
     end
     f.actions
   end
-
+  
   create_or_edit = Proc.new {
-    @user            = User.find_or_create_by_id(params[:id])
+    @user            = User.find_or_create_by(id: params[:id])
     @user.superadmin = params[:user][:superadmin]
-    @user.attributes = params[:user].delete_if do |k, v|
+    # binding.pry
+    @user.attributes = permitted_params.delete_if do |k, v|
       (k == "superadmin") ||
       (["password", "password_confirmation"].include?(k) && v.empty? && !@user.new_record?)
     end
