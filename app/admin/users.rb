@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   controller do
     def permitted_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :superadmin)
+      params.require(:user).permit(:email, :password, :password_confirmation, :member, :superadmin)
     end
   end
   
@@ -25,6 +25,7 @@ ActiveAdmin.register User do
   form do |f|
     f.inputs do
       f.input :email
+      f.input :member, :label => "Member"
       f.input :superadmin, :label => "Super Administrator"
     end
     f.actions

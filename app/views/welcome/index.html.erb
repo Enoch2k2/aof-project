@@ -1,14 +1,15 @@
-<h2 class="center">Architects Of Fate News</h2>
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">December 31</span>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque itaque dolores eligendi dolore, debitis expedita a accusantium. Odit dignissimos sint sunt quia, hic molestias, pariatur quo mollitia tenetur adipisci esse.</p>
+<h2 class="center indigo-text text-darken-4">Architects Of Fate News</h2>
+<% @news.each do |news| %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title indigo-text text-darken-4 center-align"><%= news.title %></span>
+      <p class="center-align"><em><%= news.date %></em></p>
+      <% if news.image_url %>
+        <div class="container">
+          <img class="responsive-img" src="<%= news.image_url %>" />
+        </div>
+      <% end %>
+      <p><strong><%= news.content %></strong></p>
+    </div>
   </div>
-</div>
-
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">December 30</span>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque itaque dolores eligendi dolore, debitis expedita a accusantium. Odit dignissimos sint sunt quia, hic molestias, pariatur quo mollitia tenetur adipisci esse.</p>
-  </div>
-</div>
+<% end %>
