@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="indigo-text text-darken4">Edit Profile</h3>
+    <%= form_for @user do |f| %>
+      <div class="input-field">
+        <%= f.text_field :username %>
+        <%= f.label :username %>
+      </div>
+
+      <div class="input-field">
+        <p class="grey-text">Avatar</p>
+        <%= f.file_field :avatar, multiple: false, direct_upload: true %>
+      </div>
+
+      <%= f.submit "Edit Profile", class: "btn" %>
+    <% end %>
+  </div>
+</div>

@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   root to: "welcome#index"
   match '/admin', to: 'admin/dashboard#index', via: :get
   get '/members', to: 'welcome#members', as: 'members'
+
+  resources :users, only: [:show, :edit, :update]
+  
   ActiveAdmin.routes(self)
 end
