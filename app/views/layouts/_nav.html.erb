@@ -1,7 +1,8 @@
-<nav class="indigo darken-4">
-  <div class="nav-wrapper container">
+<nav class="nav-wrapper indigo darken-4">
+  <div class="container">
     <%= link_to "Architects Of Fate", root_path, class: "brand-logo" %>
-    <ul class="right">
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
       <% if !user_signed_in? %>
         <li><%= link_to "Sign Up", new_user_registration_path %></li>
         <li><%= link_to "Log In", new_user_session_path %></li>
@@ -17,3 +18,24 @@
     </ul>
   </div>
 </nav>
+
+<ul class="sidenav" id="mobile-demo">
+  <% if !user_signed_in? %>
+      <li><%= link_to "Sign Up", new_user_registration_path %></li>
+      <li><%= link_to "Log In", new_user_session_path %></li>
+  <% else %>
+    <% if current_user.superadmin %>
+    <li><%= link_to "Admin", admin_dashboard_path %></li>
+    <% end %>
+    <li><%= link_to "Member List", members_path %></li>
+    <li><%= link_to "Forum", "#" %></li>
+    <li><%= link_to "FC Calendar", "#" %></li>
+    <li><%= link_to "Logout", destroy_user_session_path, method: "delete" %></li>
+  <% end %>
+</ul>
+
+<script>
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+</script>
