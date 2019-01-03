@@ -1,13 +1,20 @@
 <div class="card">
   <div class="card-content">
-    <h3 class="indigo-text text-darken4"><%= @user.username %></h3>
+    <h3 class="indigo-text text-darken4 center-align"><%= @user.username %></h3>
+    <% if current_user.member %>
+      <p class="center-align" style="margin-top: -20px; color: green;"><strong>Member</strong></p>
+    <% end %>
+    <p class="center-align" style="margin-bottom: 15px;"><strong>Joined: <%= @user.created_at.strftime("%B %d, %Y") %></strong></p>
     <% if @user.avatar.attached? %>
-      <%= image_tag url_for(@user.avatar), class: "thumbnail" %>
+      <div class="center-align">
+        <%= image_tag url_for(@user.avatar), class: "thumbnail" %>
+      </div>
     <% end %>
-    <p><strong>Joined: <%= @user.created_at.strftime("%B %d, %Y") %></strong></p>
-    <br />
-    <% if current_user == @user %>
-      <%= link_to "Edit Profile", edit_user_path(current_user) %>
-    <% end %>
+    <br>
+    <div class="right-align">
+      <% if current_user == @user %>
+        <%= link_to "Edit Profile", edit_user_path(current_user) %>
+      <% end %>
+    </div>
   </div>
 </div>
