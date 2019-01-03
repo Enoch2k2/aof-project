@@ -12,7 +12,7 @@
         <% @members.sort_by{|member| member.username}.each do |member| %>
           <tr>
             <% if member.username %>
-              <td><%= member.username %></td>
+              <td><%= link_to member.username, user_path(member) %></td>
               <td><%= member.created_at.strftime("%B %d, %Y") %></td>
             <% end %>
           </tr>
