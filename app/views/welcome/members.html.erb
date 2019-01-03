@@ -1,5 +1,23 @@
-<ul>
-  <% @members.each do |member| %>
-    <li><%= member.email %></li>
-  <% end %>
-</ul>
+<div class="card">
+  <div class="card-content">
+    <h3 class="center-align">Members</h3>
+    <table class="centered">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Join Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @members.each do |member| %>
+          <tr>
+            <% if member.username %>
+              <td><%= member.username %></td>
+              <td><%= member.created_at.strftime("%B %d, %Y") %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
