@@ -21,8 +21,8 @@
         <h4 class="center indigo-text text-darken-4"><%= @post.title %></h4>
         <p class="center">Posted By: <%= @post.user.username %></p>
         <hr>
-        <% if @post.image_link %>
-          <%= image_tag @post.image_link, class: "responsive-img", width: "100%" %>
+        <% if @post.image_url %>
+          <%= image_tag @post.image_url, class: "responsive-img", width: "100%" %>
         <% end %>
         <% @post.content.split("\r\n").each do |p| %>
           <p><%= auto_link(p, html: {target: '_blank'}) %></p>
