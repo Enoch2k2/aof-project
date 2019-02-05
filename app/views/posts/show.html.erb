@@ -9,8 +9,13 @@
     <div class="card teal">
       <div class="card-content">
         <span class="right">
-          <%= link_to edit_topic_post_path(@topic, @post) do %>
-            <i class="material-icons indigo-text text-darken-4">edit</i>
+          <% if current_user == @post.user %>
+            <%= link_to edit_topic_post_path(@topic, @post) do %>
+              <i class="material-icons indigo-text text-darken-4">edit</i>
+            <% end %>
+            <%= link_to delete_topic_post_path(@topic, @post), method: "delete" do %>
+              <i class="material-icons indigo-text text-darken-4">delete</i>
+            <% end %>
           <% end %>
         </span>
         <h4 class="center indigo-text text-darken-4"><%= @post.title %></h4>

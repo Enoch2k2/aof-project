@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   get '/forum/topics/:topic_id/posts/:id/edit', to: 'posts#edit', as: 'edit_topic_post'
   post '/forum/topics/:topic_id/posts/:post_id/comments', to: 'comments#create', as: 'post_comments'
   patch '/forum/topics/:topic_id/posts/:id', to: 'posts#update'
+  delete '/forum/topics/:topic_id/posts/:id', to: 'posts#destroy', as: 'delete_topic_post'
   ActiveAdmin.routes(self)
 end

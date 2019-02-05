@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :get_forum
   before_action :get_topic
-  before_action :get_post, only: [:show, :edit, :update]
+  before_action :get_post, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user!
 
   def new
@@ -25,15 +25,23 @@ class PostsController < ApplicationController
 
   def edit
     @url = topic_post_path(@topic, @post)
+    redirect_to topic_post_path(@topic, @post) unless @post.user == current_user
   end
 
   def update
+    redirect_to topic_post_path(@topic, @post) unless @post.user == current_user
     if @post.update(post_params)
       redirect_to topic_post_path(@topic, @post)
     else
       flash.now[:notice] = "You must fill out all fields"
       render :edit
     end
+  end
+
+  def destroy
+    redirect_to topic_post_path(@topic, @post) unless @post.user == current_user
+    @post.destroy
+    redirect_to forum_topic_path(@topic)
   end
 
   private
