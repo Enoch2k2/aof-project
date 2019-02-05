@@ -3,20 +3,27 @@
     <%= link_to "<<", forum_topic_path(@topic) %>
     <h2 class="center indigo-text text-darken-4"><%= @forum.name %></h2>
     <hr>
-    <h4 class="center indigo-text text-darken-3"><%= @topic.name %> Topic</h4>
-    <p class="center indigo-text text-darken-3"><%= @topic.description %></p>
+    <h4 class="center indigo-text text-darken-4"><%= @topic.name %> Topic</h4>
+    <p class="center indigo-text text-darken-4"><%= @topic.description %></p>
     <hr>
     <div class="card teal">
       <div class="card-content">
-        <h4 class="center indigo-text text-darken-3"><%= @post.title %></h4>
+        <span class="right">
+          <%= link_to edit_topic_post_path(@topic, @post) do %>
+            <i class="material-icons indigo-text text-darken-4">edit</i>
+          <% end %>
+        </span>
+        <h4 class="center indigo-text text-darken-4"><%= @post.title %></h4>
         <p class="center">Posted By: <%= @post.user.username %></p>
         <hr>
         <% @post.content.split("\r\n").each do |p| %>
           <p><%= auto_link(p, html: {target: '_blank'}) %></p>
         <% end %>
+        <p class="right"><%= @post.updated_at ? ("Edited: " + @post.updated_at.to_s.split(" ")[0]) : ("Created: " + @post.updated_at.to_s.split(" ")[0]) %></p>
+        <br>
       </div>
     </div>
-    <h4 class="indigo-text">Comments</h4>
+    <h4 class="indigo-text text-darken-4">Comments</h4>
     <hr>
     <% @post.valid_comments.each do |c| %>
       <div class="card">
@@ -32,7 +39,7 @@
     <hr>
     <div class="card">
       <div class="card-content">
-        <h4 class="indigo-text">Create Comment</h4>
+        <h4 class="indigo-text text-darken-4">Create Comment</h4>
         <%= form_for @comment, url: post_comments_path(@topic, @post) do |f| %>
           <% if flash[:notice] %>
             <p class="red-text"><%= flash[:notice] %></p>

@@ -1,10 +1,11 @@
 class PostsController < ApplicationController
   before_action :get_forum
   before_action :get_topic
-  before_action :get_post, only: [:show]
+  before_action :get_post, only: [:show, :edit, :update]
   before_action :authorize_user!
 
   def new
+    @url = topic_posts_path(@topic)
     @post = @topic.posts.build
   end
 
@@ -20,6 +21,19 @@ class PostsController < ApplicationController
 
   def show
     @comment = @post.comments.build(user_id: current_user.id)
+  end
+
+  def edit
+    @url = topic_post_path(@topic, @post)
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to topic_post_path(@topic, @post)
+    else
+      flash.now[:notice] = "You must fill out all fields"
+      render :edit
+    end
   end
 
   private

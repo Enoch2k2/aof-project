@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get '/forum/topics/:topic_id/posts/new', to: 'posts#new', as: 'new_topic_post'
   post '/forum/topics/:topic_id/posts', to: 'posts#create', as: 'topic_posts'
   get '/forum/topics/:topic_id/posts/:id', to: 'posts#show', as: 'topic_post'
+  get '/forum/topics/:topic_id/posts/:id/edit', to: 'posts#edit', as: 'edit_topic_post'
   post '/forum/topics/:topic_id/posts/:post_id/comments', to: 'comments#create', as: 'post_comments'
+  patch '/forum/topics/:topic_id/posts/:id', to: 'posts#update'
   ActiveAdmin.routes(self)
 end
