@@ -8,16 +8,16 @@
     <hr>
     <div class="card teal">
       <div class="card-content">
-        <span class="right">
-          <% if current_user == @post.user %>
+        <% if current_user == @post.user %>
+          <span class="right">
             <%= link_to edit_topic_post_path(@topic, @post) do %>
               <i class="material-icons indigo-text text-darken-4">edit</i>
             <% end %>
             <%= link_to delete_topic_post_path(@topic, @post), method: "delete" do %>
               <i class="material-icons indigo-text text-darken-4">delete</i>
             <% end %>
-          <% end %>
-        </span>
+          </span>
+        <% end %>
         <h4 class="center indigo-text text-darken-4"><%= @post.title %></h4>
         <p class="center">Posted By: <%= @post.user.username %></p>
         <hr>
@@ -33,6 +33,16 @@
     <% @post.valid_comments.order(id: :desc).each do |c| %>
       <div class="card">
         <div class="card-content">
+          <% if current_user == c.user %>
+          <span class="right">
+            <%= link_to edit_topic_post_comment_path(@topic, @post, c) do %>
+              <i class="material-icons indigo-text text-darken-4">edit</i>
+            <% end %>
+            <%= link_to delete_topic_post_comment_path(@topic, @post, c), method: "delete" do %>
+              <i class="material-icons indigo-text text-darken-4">delete</i>
+            <% end %>
+          </span>
+        <% end %>
           <% c.content.split("\r\n").each do |p| %>
             <p><%= auto_link(p, html: {target: '_blank'}) %></p>
           <% end if c.content %>

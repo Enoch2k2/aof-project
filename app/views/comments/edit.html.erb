@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="card-content">
+    <h4 class="indigo-text darken-4">Edit Comment</h4>
+    <%= form_for @comment, url: topic_post_comment_path(@topic, @post, @comment) do |f| %>
+      <% if flash[:notice] %>
+        <div class="red-text center"><%= flash[:notice] %></div>
+      <% end %>
+
+      <div class="input-field">
+        <%= f.text_area :content, class: "materialize-textarea" %>
+        <%= f.label :content %>
+      </div>
+
+      <%= f.hidden_field :post_id %>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+
+      <%= f.submit "Submit", class: "btn indigo"%>
+    <% end %>
+  </div>
+</div>
