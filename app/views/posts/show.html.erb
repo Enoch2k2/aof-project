@@ -24,7 +24,7 @@
         <% @post.content.split("\r\n").each do |p| %>
           <p><%= auto_link(p, html: {target: '_blank'}) %></p>
         <% end %>
-        <p class="right"><%= @post.updated_at ? ("Edited: " + @post.updated_at.to_s.split(" ")[0]) : ("Created: " + @post.updated_at.to_s.split(" ")[0]) %></p>
+        <p class="right"><%= @post.updated_at > @post.created_at ? ("Edited: " + @post.updated_at.to_s.split(" ")[0]) : ("Created: " + @post.updated_at.to_s.split(" ")[0]) %></p>
         <br>
       </div>
     </div>
