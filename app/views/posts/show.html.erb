@@ -8,7 +8,7 @@
     <hr>
     <div class="card teal">
       <div class="card-content">
-        <h4 class="center indigo-text text-darken-3"><%= @post.title %> Topic</h4>
+        <h4 class="center indigo-text text-darken-3"><%= @post.title %></h4>
         <p class="center">Posted By: <%= @post.user.username %></p>
         <hr>
         <% @post.content.split("\r\n").each do |p| %>
