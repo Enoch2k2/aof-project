@@ -10,12 +10,14 @@
       <%= link_to "Create Post", new_topic_post_path(@topic) %>
     </div>
 
-    <% @topic.posts.each do |post| %>
+    <% @topic.posts.order(id: :desc).each do |post| %>
       <%= link_to topic_post_path(@topic, post), class: "black-text" do %>
         <div class="card teal">
           <div class="card-content">
-            <p class="left"><%= post.title %></p>
-            <p class="right">Posted By: <%= post.user.username %></p><br>
+            <p><strong class="left"><%= post.title %></strong></p>
+            <p><strong class="right">Replies <span class="badge teal darken-4"><%= post.comments.length %></span></strong></p>
+            <br>
+            <p>Posted By: <%= post.user.username %></p>
           </div>
         </div>
       <% end %>

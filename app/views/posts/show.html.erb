@@ -30,14 +30,16 @@
     </div>
     <h4 class="indigo-text text-darken-4">Comments</h4>
     <hr>
-    <% @post.valid_comments.each do |c| %>
+    <% @post.valid_comments.order(id: :desc).each do |c| %>
       <div class="card">
         <div class="card-content">
           <% c.content.split("\r\n").each do |p| %>
             <p><%= auto_link(p, html: {target: '_blank'}) %></p>
           <% end if c.content %>
           <br>
-          <p>Posted By: <%= c.user.username %></p>
+          <p class="left">Posted By: <%= c.user.username %></p>
+          <p class="right"><%= c.updated_at ? c.updated_at.to_s.split(" ")[0] : c.created_at.to_s.split(" ") %></p>
+          <br>
         </div>
       </div>
     <% end %>
