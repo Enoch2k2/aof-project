@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-content">
+    <%= link_to "<<", forum_topic_path(@topic) %>
+    <h2 class="center indigo-text text-darken-4"><%= @forum.name %></h2>
+    <hr>
+    <h4 class="center indigo-text text-darken-3"><%= @topic.name %> Topic</h4>
+    <p class="center indigo-text text-darken-3"><%= @topic.description %></p>
+    <hr>
+    <div class="card teal">
+      <div class="card-content">
+        <h4 class="center indigo-text text-darken-3"><%= @post.title %> Topic</h4>
+        <p class="center">Posted By: <%= @post.user.username %></p>
+        <hr>
+        <% @post.content.split("\r\n").each do |p| %>
+          <p><%= auto_link(p, html: {target: '_blank'}) %></p>
+        <% end %>
+      </div>
+    </div>
+    <h4 class="indigo-text">Comments</h4>
+    <hr>
+    <% @post.valid_comments.each do |c| %>
+      <div class="card">
+        <div class="card-content">
+          <% c.content.split("\r\n").each do |p| %>
+            <p><%= auto_link(p, html: {target: '_blank'}) %></p>
+          <% end if c.content %>
+          <br>
+          <p>Posted By: <%= c.user.username %></p>
+        </div>
+      </div>
+    <% end %>
+    <hr>
+    <div class="card">
+      <div class="card-content">
+        <h4 class="indigo-text">Create Comment</h4>
+        <%= form_for @comment, url: post_comments_path(@topic, @post) do |f| %>
+          <% if flash[:notice] %>
+            <p class="red-text"><%= flash[:notice] %></p>
+          <% end %>
+          <div class="input-field">
+            <%= f.text_area :content, class: "materialize-textarea" %>
+            <%= f.label :content%>
+          </div>
+
+          <%= f.hidden_field :post_id %>
+          <%= f.hidden_field :user_id %>
+          <%= f.submit "Create Comment", class: "btn teal" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

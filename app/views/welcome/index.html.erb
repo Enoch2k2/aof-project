@@ -1,3 +1,6 @@
+<% if flash[:notice] %>
+  <p class="red-text"><%= flash[:notice] %></p>
+<% end %>
 <h2 class="center indigo-text text-darken-4">Architects Of Fate News</h2>
 <% @news.each do |news| %>
   <div class="card">

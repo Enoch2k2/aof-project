@@ -11,7 +11,7 @@
         <li><%= link_to "Admin", admin_dashboard_path %></li>
         <% end %>
         <li><%= link_to "Member List", members_path %></li>
-        <li><%= link_to "Forum", "#" %></li>
+        <li><%= link_to "Forum", forum_path %></li>
         <li><%= link_to "FC Calendar", "#" %></li>
         <li><%= link_to "Profile", user_path(current_user) %></li>
         <li><%= link_to "Logout", destroy_user_session_path, method: "delete" %></li>
@@ -29,7 +29,7 @@
     <li><%= link_to "Admin", admin_dashboard_path %></li>
     <% end %>
     <li><%= link_to "Member List", members_path %></li>
-    <li><%= link_to "Forum", "#" %></li>
+    <li><%= link_to "Forum", forum_path %></li>
     <li><%= link_to "FC Calendar", "#" %></li>
     <li><%= link_to "Profile", user_path(current_user) %></li>
     <li><%= link_to "Logout", destroy_user_session_path, method: "delete" %></li>

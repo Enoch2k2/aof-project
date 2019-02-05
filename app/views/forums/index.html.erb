@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-content">
+    <h2 class="center indigo-text text-darken-4"><%= @forum.name %></h2>
+    <hr>
+
+    <% @forum.topics.each do |topic| %>
+      <%= link_to forum_topic_path(topic), class: "black-text" do %>
+        <div class="card teal">
+          <div class="card-content">
+            <p><strong class="left"><%= topic.name %></strong></p>
+            <p><strong class="right">Posts: <span class="badge teal darken-4"><%= topic.posts.length %></span></strong></p>
+            <br>
+            <p><%= topic.description %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

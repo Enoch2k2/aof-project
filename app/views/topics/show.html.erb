@@ -1,0 +1,24 @@
+<div class="card">
+  <div class="card-content">
+    <%= link_to "<<", forum_path %>
+    <h2 class="center indigo-text text-darken-4"><%= @forum.name %></h2>
+    <hr>
+    <h4 class="center indigo-text text-darken-3"><%= @topic.name %> Topic</h4>
+    <p class="center indigo-text text-darken-3"><%= @topic.description %></p>
+    <hr>
+    <div class="center">
+      <%= link_to "Create Post", new_topic_post_path(@topic) %>
+    </div>
+
+    <% @topic.posts.each do |post| %>
+      <%= link_to topic_post_path(@topic, post), class: "black-text" do %>
+        <div class="card teal">
+          <div class="card-content">
+            <p class="left"><%= post.title %></p>
+            <p class="right">Posted By: <%= post.user.username %></p><br>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
