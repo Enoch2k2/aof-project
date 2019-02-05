@@ -2,7 +2,7 @@
   <p class="red-text"><%= flash[:notice] %></p>
 <% end %>
 <h2 class="center indigo-text text-darken-4">Architects Of Fate News</h2>
-<% @news.each do |news| %>
+<% @news.order(id: :desc).each do |news| %>
   <div class="card">
     <div class="card-content">
       <span class="card-title indigo-text text-darken-4 center-align"><%= news.title %></span>
