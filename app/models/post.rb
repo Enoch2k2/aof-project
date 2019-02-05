@@ -9,4 +9,8 @@ class Post < ApplicationRecord
   def valid_comments
     comments.where('id IS NOT ?', nil)
   end
+
+  def get_video_id
+    self.video_url.split("v=").last
+  end
 end
