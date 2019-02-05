@@ -24,7 +24,7 @@
         <% if @post.image_url %>
           <%= image_tag @post.image_url, class: "responsive-img", width: "100%" %>
         <% end %>
-        <% if @post.video_url %>
+        <% if !@post.video_url.empty? && !@post.video_url.nil? %>
           <div class="video-container">
             <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= @post.get_video_id %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
